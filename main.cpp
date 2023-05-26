@@ -60,7 +60,6 @@ int main() {
             power--;
         }
         valx[i] =((b - a) / (pow(2, l) - 1)) * aux + a;
-        cout<<valx[i]<<endl;
         valf[i] = valx[i] * valx[i] * x + valx[i] * y + z;
     }
 
