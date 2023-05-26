@@ -354,7 +354,7 @@ int main() {
                 aux = aux + binPop[i][j] * pow(2, power);
                 power--;
             }
-            valx[i] =( (b - a) / pow(2, l - 1) - 1 )* aux + a;
+            valx[i] =( (b - a) / pow(2, l) - 1 )* aux + a;
             valf[i] = valx[i] * valx[i] * x + valx[i] * y + z;
         }
 
@@ -377,8 +377,8 @@ int main() {
         for (int i = 0; i < dim; ++i) {
             double u = 0;
             for (int j = 0; j < 14; ++j) {
-                int aux = rand();
-                u = u/10 + aux%10;
+                int auxx = rand();
+                u = u/10 + auxx%10;
             }
             u = u / 10;
             int index = cautareBin(intervale, u);
@@ -386,12 +386,12 @@ int main() {
         }
         binPop = aux;
         for (int i = 0; i < dim; ++i) {
-            double aux = 0, power = l - 1;
+            double auxx = 0, power = l - 1;
             for (int j = 0; j < binPop[i].size(); ++j) {
-                aux = aux + binPop[i][j] * pow(2, power);
+                auxx = auxx + binPop[i][j] * pow(2, power);
                 power--;
             }
-            valx[i] = ((b - a) / (pow(2, l) - 1)) * aux + a;
+            valx[i] = ((b - a) / (pow(2, l) - 1)) * auxx + a;
             valf[i] = valx[i] * valx[i] * x + valx[i] * y + z;
         }
         vector<pair<double, int>> participa;
@@ -507,7 +507,6 @@ int main() {
             binPop[worstp] = bestFit;
         }
 
-        double maxf = INT_MIN, medf = 0;
         for (int i = 0; i < dim; ++i) {
             if (maxf < valf[i]){
                 maxf = valf[i];
