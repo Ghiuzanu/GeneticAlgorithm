@@ -133,7 +133,7 @@ int main() {
             aux = aux + binPop[i][j] * pow(2, power);
             power--;
         }
-        valx[i] =((b - a) / (pow(2, l) - 1)) * aux + a;
+        valx[i] = ((b - a) / (pow(2, l) - 1)) * aux + a;
         valf[i] = valx[i] * valx[i] * x + valx[i] * y + z;
     }
     for (int i = 0; i < dim; ++i) {
@@ -354,7 +354,7 @@ int main() {
                 aux = aux + binPop[i][j] * pow(2, power);
                 power--;
             }
-            valx[i] =( (b - a) / pow(2, l) - 1 )* aux + a;
+            valx[i] = ((b - a) / (pow(2, l) - 1)) * aux + a;
             valf[i] = valx[i] * valx[i] * x + valx[i] * y + z;
         }
 
