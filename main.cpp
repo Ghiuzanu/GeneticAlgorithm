@@ -47,7 +47,7 @@ int main() {
     vector<vector<int>> binPop(dim);
     vector<double> valx(dim), valf(dim);
     int random;
-    int l = int(log2(double((b - a) * pow(10, prec))));
+    int l = ceil(log2(double((b - a) * pow(10, prec))));
     for (int i = 0; i < dim; ++i) {
         for (int j = 0; j < l; ++j) {
             binPop[i].push_back(rand() % 2);
@@ -59,7 +59,8 @@ int main() {
             aux = aux + binPop[i][j] * pow(2, power);
             power--;
         }
-        valx[i] = (b - a) / pow(2, l) - 1 * aux + a;
+        valx[i] =((b - a) / (pow(2, l) - 1)) * aux + a;
+        cout<<valx[i]<<endl;
         valf[i] = valx[i] * valx[i] * x + valx[i] * y + z;
     }
 
@@ -133,7 +134,7 @@ int main() {
             aux = aux + binPop[i][j] * pow(2, power);
             power--;
         }
-        valx[i] = (b - a) / pow(2, l) - 1 * aux + a;
+        valx[i] =((b - a) / (pow(2, l) - 1)) * aux + a;
         valf[i] = valx[i] * valx[i] * x + valx[i] * y + z;
     }
     for (int i = 0; i < dim; ++i) {
@@ -185,27 +186,27 @@ int main() {
         if (j == participa.size() - 1){
             if (participa[i].first != participa[j].first && participa[j].second != -1){
                 fout<<"Recombinare dintre cromozomul "<<participa[i].second + 1<<" cu cromozomul "<<participa[j].second + 1<<":\n";
-                for (int l = 0; l < binPop[participa[i].second].size(); ++l) {
-                    fout<<binPop[participa[i].second][l];
+                for (int ll = 0; ll < binPop[participa[i].second].size(); ++ll) {
+                    fout<<binPop[participa[i].second][ll];
                 }
                 fout<<' ';
-                for (int l = 0; l < binPop[participa[j].second].size(); ++l) {
-                    fout<<binPop[participa[j].second][l];
+                for (int ll = 0; ll < binPop[participa[j].second].size(); ++ll) {
+                    fout<<binPop[participa[j].second][ll];
                 }
                 int punct = rand() % l;
                 fout<<" punct "<<punct<<endl;
                 fout<<"Rezultat ";
-                for (int l = punct; l < l; ++l) {
-                    int aux = binPop[participa[j].second][l];
-                    binPop[participa[j].second][l] = binPop[participa[i].second][l];
-                    binPop[participa[i].second][l] = aux;
+                for (int ll = punct; ll < l; ++ll) {
+                    int aux = binPop[participa[j].second][ll];
+                    binPop[participa[j].second][ll] = binPop[participa[i].second][ll];
+                    binPop[participa[i].second][ll] = aux;
                 }
-                for (int l = 0; l < binPop[participa[i].second].size(); ++l) {
-                    fout<<binPop[participa[i].second][l];
+                for (int ll = 0; ll < binPop[participa[i].second].size(); ++ll) {
+                    fout<<binPop[participa[i].second][ll];
                 }
                 fout<<' ';
-                for (int l = 0; l < binPop[participa[j].second].size(); ++l) {
-                    fout<<binPop[participa[j].second][l];
+                for (int ll = 0; ll < binPop[participa[j].second].size(); ++ll) {
+                    fout<<binPop[participa[j].second][ll];
                 }
                 fout<<endl<<endl;
             }
@@ -213,42 +214,42 @@ int main() {
         }
         else{
             fout<<"Recombinare dintre cromozomul "<<participa[i].second + 1<<" cu cromozomul "<<participa[j].second + 1<<":\n";
-            for (int l = 0; l < binPop[participa[i].second].size(); ++l) {
-                fout<<binPop[participa[i].second][l];
+            for (int ll = 0; ll < binPop[participa[i].second].size(); ++ll) {
+                fout<<binPop[participa[i].second][ll];
             }
             fout<<' ';
-            for (int l = 0; l < binPop[participa[j].second].size(); ++l) {
-                fout<<binPop[participa[j].second][l];
+            for (int ll = 0; ll < binPop[participa[j].second].size(); ++ll) {
+                fout<<binPop[participa[j].second][ll];
             }
             int punct = rand() % l;
             fout<<" punct "<<punct<<endl;
             fout<<"Rezultat ";
-            for (int l = punct; l < l; ++l) {
-                int aux = binPop[participa[j].second][l];
-                binPop[participa[j].second][l] = binPop[participa[i].second][l];
-                binPop[participa[i].second][l] = aux;
+            for (int ll = punct; ll < l; ++ll) {
+                int aux = binPop[participa[j].second][ll];
+                binPop[participa[j].second][ll] = binPop[participa[i].second][ll];
+                binPop[participa[i].second][ll] = aux;
             }
-            for (int l = 0; l < binPop[participa[i].second].size(); ++l) {
-                fout<<binPop[participa[i].second][l];
+            for (int ll = 0; ll < binPop[participa[i].second].size(); ++ll) {
+                fout<<binPop[participa[i].second][ll];
             }
             fout<<' ';
-            for (int l = 0; l < binPop[participa[j].second].size(); ++l) {
-                fout<<binPop[participa[j].second][l];
+            for (int ll = 0; ll < binPop[participa[j].second].size(); ++ll) {
+                fout<<binPop[participa[j].second][ll];
             }
             double aux = 0, power = l - 1;
-            for (int l = 0; l < binPop[participa[i].second].size(); ++l) {
-                aux = aux + binPop[participa[i].second][l] * pow(2, power);
+            for (int ll = 0; ll < binPop[participa[i].second].size(); ++ll) {
+                aux = aux + binPop[participa[i].second][ll] * pow(2, power);
                 power--;
             }
-            valx[participa[i].second] = (b - a) / pow(2, l) - 1 * aux + a;
+            valx[participa[i].second] =((b - a) / (pow(2, l) - 1)) * aux + a;
             valf[participa[i].second] = valx[participa[i].second] * valx[participa[i].second] * x + valx[participa[i].second] * y + z;
             aux = 0;
             power = l - 1;
-            for (int l = 0; l < binPop[participa[j].second].size(); ++l) {
-                aux = aux + binPop[participa[j].second][l] * pow(2, power);
+            for (int ll = 0; ll < binPop[participa[j].second].size(); ++ll) {
+                aux = aux + binPop[participa[j].second][ll] * pow(2, power);
                 power--;
             }
-            valx[participa[j].second] = (b - a) / pow(2, l) - 1 * aux + a;
+            valx[participa[j].second] =((b - a) / (pow(2, l) - 1)) * aux + a;
             valf[participa[j].second] = valx[participa[j].second] * valx[participa[j].second] * x + valx[participa[j].second] * y + z;
             participa[i].second = -1;
             participa[j].second = -1;
@@ -276,7 +277,7 @@ int main() {
     int ok = 0;
     for (int i = 0; i < dim; ++i) {
         int ok1 = 0;
-        for (int l = 0; l < binPop[i].size(); ++l) {
+        for (int ll = 0; ll < binPop[i].size(); ++ll) {
             double u = 0;
             for (int j = 0; j < 14; ++j) {
                 int aux = rand();
@@ -285,7 +286,7 @@ int main() {
             u = u / 10;
             if (u < probMut){
                 ok = ok1 = 1;
-                binPop[i][l] = 1 - binPop[i][l];
+                binPop[i][ll] = 1 - binPop[i][ll];
             }
         }
         if (ok1 == 1){
@@ -295,7 +296,7 @@ int main() {
                 aux = aux + binPop[i][j] * pow(2, power);
                 power--;
             }
-            valx[i] = (b - a) / pow(2, l) - 1 * aux + a;
+            valx[i] =((b - a) / (pow(2, l) - 1)) * aux + a;
             valf[i] = valx[i] * valx[i] * x + valx[i] * y + z;
         }
     }
@@ -354,7 +355,7 @@ int main() {
                 aux = aux + binPop[i][j] * pow(2, power);
                 power--;
             }
-            valx[i] = (b - a) / pow(2, l) - 1 * aux + a;
+            valx[i] =( (b - a) / pow(2, l - 1) - 1 )* aux + a;
             valf[i] = valx[i] * valx[i] * x + valx[i] * y + z;
         }
 
@@ -391,7 +392,7 @@ int main() {
                 aux = aux + binPop[i][j] * pow(2, power);
                 power--;
             }
-            valx[i] = (b - a) / pow(2, l) - 1 * aux + a;
+            valx[i] = ((b - a) / (pow(2, l) - 1)) * aux + a;
             valf[i] = valx[i] * valx[i] * x + valx[i] * y + z;
         }
         vector<pair<double, int>> participa;
@@ -420,35 +421,35 @@ int main() {
             if (j == participa.size() - 1){
                 if (participa[i].first != participa[j].first && participa[j].second != -1){
                     int punct = rand() % l;
-                    for (int l = punct; l < l; ++l) {
-                        int aux = binPop[participa[j].second][l];
-                        binPop[participa[j].second][l] = binPop[participa[i].second][l];
-                        binPop[participa[i].second][l] = aux;
+                    for (int ll = punct; ll < l; ++ll) {
+                        int aux = binPop[participa[j].second][ll];
+                        binPop[participa[j].second][ll] = binPop[participa[i].second][ll];
+                        binPop[participa[i].second][ll] = aux;
                     }
                 }
                 break;
             }
             else{
                 int punct = rand() % l;
-                for (int l = punct; l < l; ++l) {
+                for (int ll = punct; ll < l; ++ll) {
                     int aux = binPop[participa[j].second][l];
-                    binPop[participa[j].second][l] = binPop[participa[i].second][l];
-                    binPop[participa[i].second][l] = aux;
+                    binPop[participa[j].second][ll] = binPop[participa[i].second][ll];
+                    binPop[participa[i].second][ll] = aux;
                 }
                 double aux = 0, power = l - 1;
-                for (int l = 0; l < binPop[participa[i].second].size(); ++l) {
-                    aux = aux + binPop[participa[i].second][l] * pow(2, power);
+                for (int ll = 0; ll < binPop[participa[i].second].size(); ++ll) {
+                    aux = aux + binPop[participa[i].second][ll] * pow(2, power);
                     power--;
                 }
-                valx[participa[i].second] = (b - a) / pow(2, l) - 1 * aux + a;
+                valx[participa[i].second] = ((b - a) / (pow(2, l) - 1)) * aux + a;
                 valf[participa[i].second] = valx[participa[i].second] * valx[participa[i].second] * x + valx[participa[i].second] * y + z;
                 aux = 0;
                 power = l - 1;
-                for (int l = 0; l < binPop[participa[j].second].size(); ++l) {
-                    aux = aux + binPop[participa[j].second][l] * pow(2, power);
+                for (int ll = 0; ll < binPop[participa[j].second].size(); ++ll) {
+                    aux = aux + binPop[participa[j].second][ll] * pow(2, power);
                     power--;
                 }
-                valx[participa[j].second] = (b - a) / pow(2, l) - 1 * aux + a;
+                valx[participa[j].second] = ((b - a) / (pow(2, l) - 1)) * aux + a;
                 valf[participa[j].second] = valx[participa[j].second] * valx[participa[j].second] * x + valx[participa[j].second] * y + z;
                 participa[i].second = -1;
                 participa[j].second = -1;
@@ -457,7 +458,7 @@ int main() {
         vector<int> partMut;
         for (int i = 0; i < dim; ++i) {
             int ok1 = 0;
-            for (int l = 0; l < binPop[i].size(); ++l) {
+            for (int ll = 0; ll < binPop[i].size(); ++ll) {
                 double u = 0;
                 for (int j = 0; j < 14; ++j) {
                     int aux = rand();
@@ -466,7 +467,7 @@ int main() {
                 u = u / 10;
                 if (u < probMut){
                     ok1 = 1;
-                    binPop[i][l] = 1 - binPop[i][l];
+                    binPop[i][ll] = 1 - binPop[i][ll];
                 }
             }
             if (ok1 == 1){
@@ -475,7 +476,7 @@ int main() {
                     aux = aux + binPop[i][j] * pow(2, power);
                     power--;
                 }
-                valx[i] = (b - a) / (pow(2, l) - 1) * aux + a;
+                valx[i] = ((b - a) / (pow(2, l) - 1)) * aux + a;
                 valf[i] = valx[i] * valx[i] * x + valx[i] * y + z;
             }
         }
